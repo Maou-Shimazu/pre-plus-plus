@@ -1,0 +1,11 @@
+
+Checks:              '-checks=-*,clang-analyzer-*,-clang-analyzer-cplusplus*'
+WarningsAsErrors:    true
+HeaderFilterRegex:   '.*'
+FormatStyle:         LLVM
+InheritParentConfig: true
+User:                user
+CheckOptions:
+  - { key: readability-identifier-naming.VariableCase,        value: lower_case }
+  - { key: readability-identifier-naming.GlobalConstantCase,  value: UPPER_CASE }
+  - { key: readability-identifier-naming.FunctionCase,        value: lower_case }
