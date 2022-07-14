@@ -1,5 +1,6 @@
 #pragma once
 
+#include <utility>
 #ifndef PRE_PLUS_PLUS_HPP
 #define PRE_PLUS_PLUS_HPP
 
@@ -10,9 +11,8 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
-#include <tuple> 
 
-std::tuple<std::string, int> exec(const char* cmd) {
+std::pair<std::string, int> exec(const char* cmd) {
 	std::array<char, 128> buffer;
 	std::string result;
 	std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
@@ -22,8 +22,8 @@ std::tuple<std::string, int> exec(const char* cmd) {
 	while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
 		result += buffer.data();
 	}
-    auto rc = pclose(pipe.get());
-	return std::make_tuple(result, rc);
+    auto exit_code = pclose(pipe.get());
+	return std::make_pair(result, exit_code);
 }
 
 #endif

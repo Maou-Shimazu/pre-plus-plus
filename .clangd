@@ -1,6 +1,6 @@
 
 CompileFlags:                   
-  Add: [-xc++, -D, __NAME__=1, -Wall, -std=c++11, -fdiagnostics-color=always, -Wpedantic, -Werror, -Wshadow, -Wformat=2, -Wconversion, -Wunused-parameter, -I../include]
+  Add: [-xc++, -Wall, -std=c++17, -fdiagnostics-color=always, -Wpedantic, -Werror, -Wshadow, -Wformat=2, -Wconversion, -Wunused-parameter, -I../include]
   Compiler: clang++
 
 Diagnostics:

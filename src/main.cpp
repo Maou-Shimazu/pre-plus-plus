@@ -1,10 +1,16 @@
 #include "prepp.hpp"
-#include <tuple>
 
 int main() {
-	std::string ex_code;
-	int sys_ex;
-	std::tie(ex_code, sys_ex) = exec(R"(clang++ 2>&1)");
+	// Note:(s)
+	// -[ ] Alright this works, returns the error in ex_code. with this, we need
+	// to glob the files and deal with the issue of absolute paths.
+	// -[ ] set a check if the exit from the first globbed file is 0, if it
+	// isnt, keep running that file untill it is. otherwise find a way to record
+	// it being completed.
+	// -[ ] check if rustlings removes executables or compiles them to a specific
+	// place.
+	auto [ex_code, sys_ex] = exec(
+		R"(clang++ C:\Users\Maou\Documents\pre-plus-plus\include\ex1\main.cpp -o C:\Users\Maou\Documents\pre-plus-plus\include\ex1\main 2>&1 && C:\Users\Maou\Documents\pre-plus-plus\include\ex1\main.exe 2>&1)");
 	std::cout << "ex_code: " << ex_code << std::endl;
 	std::cout << "sys_ex: " << sys_ex << std::endl;
 	return 0;
