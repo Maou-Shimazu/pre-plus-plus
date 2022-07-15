@@ -1,6 +1,5 @@
 #pragma once
 
-#include <utility>
 #ifndef PRE_PLUS_PLUS_HPP
 #define PRE_PLUS_PLUS_HPP
 
@@ -11,6 +10,8 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <vector>
+#include <argparse/argparse.hpp>
 
 std::pair<std::string, int> exec(const char* cmd) {
 	std::array<char, 128> buffer;
