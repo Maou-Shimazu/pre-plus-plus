@@ -22,13 +22,33 @@ std::vector<std::string> glob_exercizes() {
 
 void compile(std::vector<std::string> files) {
 	for (auto& i : files) {
-		auto [ex_code, sys_ex] =
-			exec(fmt::format("clang++ {0} -o {1}.exe 2>&1 && {1}.exe 2>&1",
-							 fs::absolute(i).string(),
-							 fs::absolute(i).string().substr(
-								 0, fs::absolute(i).string().size() - 3))
-					 .c_str());
-		std::cout << "ex_code: " << ex_code << std::endl;
-		std::cout << "sys_ex: " << sys_ex << std::endl;
+		std::string abs = fs::absolute(i).string();
+		std::string result;
+		int exit_code;
+		std::thread([&abs, &result, &exit_code]() {
+			std::tie(result, exit_code) =
+				exec(fmt::format("clang++ {0} -o {1}.exe 2>&1 && {1}.exe 2>&1",
+								 abs,
+								 abs.substr(0, abs.size() - 3))
+						 .c_str()); // add unix specific execution
+		}).join();
+		std::cout << "ex_code: " << result << std::endl;
+		std::cout << "sys_ex: " << exit_code << std::endl;
+	}
+}
+
+void watch_current_ex(fs::path current_ex) {
+	std::fstream oc(current_ex, std::ifstream::in);
+	std::string original_content((std::istreambuf_iterator<char>(oc)),
+								 std::istreambuf_iterator<char>());
+	while (true) {
+		std::fstream nc(current_ex, std::ifstream::in);
+		std::string new_content((std::istreambuf_iterator<char>(nc)),
+								std::istreambuf_iterator<char>());
+		if (original_content != new_content) {
+            original_content = new_content;
+			compile(glob_exercizes());
+			// break;
+		}
 	}
 }

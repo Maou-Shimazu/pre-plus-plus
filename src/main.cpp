@@ -26,9 +26,5 @@ int main(int argc, char** argv) {
 
 	compile(glob_exercizes());
 
-	// for (auto &i: glob_exercizes()){
-	// 	fmt::print("{}", i);
-	// }
-
 	return 0;
 }
