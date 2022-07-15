@@ -7,7 +7,11 @@ int main(int argc, char** argv) {
 	prepp.add_argument("--run", "-r")
 		.nargs(1)
 		.help("Run a pre++ exercize")
-		.action([](const std::string& ex) { read_toml(ex); });
+		.action([](const std::string& ex) {
+			check(std::get<0>(read_toml(ex)),
+				  std::get<1>(read_toml(ex))/*,
+				  std::get<2>(read_toml(ex))*/);
+		});
 
 	try {
 		prepp.parse_args(argc, argv);

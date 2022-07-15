@@ -10,6 +10,7 @@
 #include <filesystem>
 #include <fmt/core.h>
 #include <fmt/format.h>
+#include <fmt/ostream.h>
 #include <fstream>
 #include <iostream>
 #include <memory>
@@ -18,7 +19,7 @@
 #include <string>
 #include <thread>
 #include <toml++/toml.h>
-#include <fmt/ostream.h>
+#include <tuple>
 #include <vector>
 
 namespace fs = std::filesystem;
