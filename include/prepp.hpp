@@ -11,21 +11,15 @@
 #include <fmt/core.h>
 #include <fmt/format.h>
 #include <fstream>
-#include <glob/glob.hpp>
 #include <iostream>
 #include <memory>
 #include <src/format.cc>
 #include <stdexcept>
 #include <string>
 #include <thread>
+#include <toml++/toml.h>
+#include <fmt/ostream.h>
 #include <vector>
-
-#ifdef __WIN32__
-#include <cppglob/fnmatch.cpp>
-#include <cppglob/glob.cpp>
-#include <cppglob/glob.hpp>
-#include <cppglob/iglob.hpp>
-#endif
 
 namespace fs = std::filesystem;
 
