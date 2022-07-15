@@ -12,6 +12,21 @@
 #include <string>
 #include <vector>
 #include <argparse/argparse.hpp>
+#include <glob/glob.hpp>
+#include <fmt/format.h>
+#include <fmt/core.h>
+#include <src/format.cc>
+#include <filesystem>
+#include <algorithm>
+
+#ifdef __WIN32__
+#include <cppglob/glob.hpp>
+#include <cppglob/iglob.hpp>
+#include <cppglob/fnmatch.cpp>
+#include <cppglob/glob.cpp>
+#endif
+
+namespace fs = std::filesystem;
 
 std::pair<std::string, int> exec(const char* cmd) {
 	std::array<char, 128> buffer;

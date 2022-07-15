@@ -5,3 +5,8 @@ edition = "2022"
 include = "include"
 src = "src/main.cpp"
 standard = "17"
+
+[dependencies] # as of right now, dosent work with cppm, but should be a futrue feature.
+argparse = "https://github.com/p-ranav/argparse"
+cppglob = "https://github.com/Kogia-sima/cppglob"
+fmt = "https://github.com/fmtlib/fmt"
