@@ -6,20 +6,29 @@
 #include <algorithm>
 #include <argparse/argparse.hpp>
 #include <array>
+#include <bitset>
+#include <chrono>
 #include <cstdio>
 #include <filesystem>
+#include <fmt/color.h>
 #include <fmt/core.h>
 #include <fmt/format.h>
 #include <fmt/ostream.h>
 #include <fstream>
+#include <functional>
+#include <indicators/progress_bar.hpp>
 #include <iostream>
 #include <memory>
+#include <spinners.hpp>
 #include <src/format.cc>
 #include <stdexcept>
 #include <string>
 #include <thread>
+#define TOML_IMPLEMENTATION
 #include <toml++/toml.h>
 #include <tuple>
+#include <unordered_map>
+#include <utility>
 #include <vector>
 
 namespace fs = std::filesystem;
@@ -37,5 +46,4 @@ std::pair<std::string, int> exec(const char* cmd) {
 	auto exit_code = pclose(pipe.get());
 	return std::make_pair(result, exit_code);
 }
-
 #endif

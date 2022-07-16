@@ -7,17 +7,23 @@ int main(int argc, char** argv) {
 	prepp.add_argument("--run", "-r")
 		.nargs(1)
 		.help("Run a pre++ exercize")
-		.action([](const std::string& ex) {
+		.action([&](const std::string& ex) {
 			check(std::get<0>(read_toml(ex)),
-				  std::get<1>(read_toml(ex))/*,
-				  std::get<2>(read_toml(ex))*/);
+				  std::get<1>(read_toml(ex)),
+				  std::get<3>(read_toml(ex)));
+		});
+
+	prepp.add_argument("--hint")
+		.help("Run pre++ in watch mode.")
+		.nargs(1)
+		.action([&](const std::string& ex) {
+			hint(std::get<2>(read_toml(ex)));
 		});
 
 	try {
 		prepp.parse_args(argc, argv);
 	} catch (const std::runtime_error& err) {
-		std::cerr << err.what() << std::endl;
-		std::cerr << prepp;
+		fmt::print(std::cerr, "{} {}", err.what(), prepp);
 		std::exit(2);
 	}
 

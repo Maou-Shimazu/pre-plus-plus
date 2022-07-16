@@ -3,3 +3,9 @@ path = "exercises/intro/intro1.cpp"
 mode = "compile"
 hint = """
 Remove the I AM NOT DONE comment to move on to the next exercise."""
+
+[intro2]
+path = "exercises/intro/intro2.cpp"
+mode = "compile"
+hint = """
+Remove the I AM NOT DONE comment to move on to the next exercise."""

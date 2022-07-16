@@ -7,6 +7,7 @@ src = "src/main.cpp"
 standard = "17"
 
 [dependencies] # as of right now, dosent work with cppm, but should be a futrue feature.
-argparse = "https://github.com/p-ranav/argparse"
-cppglob = "https://github.com/Kogia-sima/cppglob"
 fmt = "https://github.com/fmtlib/fmt"
+spinners = "https://github.com/jkuri/spinners"
+tomlplusplus = "https://github.com/marzer/tomlplusplus/"
+Custos = "https://github.com/codewithrodi/Custos"
