@@ -26,7 +26,7 @@ bool done(std::optional<std::string> path) {
 	bool done		 = false;
 	while (getline(f, line)) {
 		size_t pos = line.find(word);
-		if (pos != std::string::npos) 
+		if (pos != std::string::npos)
 			done = true;
 	}
 	return done;
@@ -50,15 +50,18 @@ bool is_complete(std::string path) {
 			std::ofstream f;
 			f.open(path, std::ios_base::app);
 			f.write(text.data(), static_cast<int>(text.size()));
-			fmt::print(fg(fmt::color::lime_green),
-					   "\n✔ This Exercise is complete! Move on to the next exercise.");
+			fmt::print(
+				fg(fmt::color::lime_green),
+				"\n✔ This Exercise is complete! Move on to the next exercise.");
 
 			file.close();
 			f.close();
 			return true;
 		} else if (contains) {
 			fmt::print(fg(fmt::color::lime_green),
-					   "\n✔ This Exercise is complete! Move on to the next exercise. If you wish to continue, remove \"// COMPLETE\" from your file.\n");
+					   "\n✔ This Exercise is complete! Move on to the next "
+					   "exercise. If you wish to continue, remove \"// "
+					   "COMPLETE\" from your file.\n");
 			file.close();
 			return true;
 		}
@@ -69,11 +72,19 @@ void compile_and_run(
 	std::string path,
 	std::string ex) { /// todo: update toml value mode from compile to complete
 					  /// when done, do when implimenting watch
+#ifdef __WIN32__
 	auto [result, exit_code] =
 		exec(fmt::format("clang++ {0} -o {1}.exe 2>&1 && {1}.exe 2>&1",
 						 path,
 						 path.substr(0, path.size() - 3))
 				 .c_str());
+#elifdef __unix__
+	auto [result, exit_code] =
+		exec(fmt::format("clang++ {0} -o {1} 2>&1 && {1} 2>&1",
+						 path,
+						 path.substr(0, path.size() - 3))
+				 .c_str());
+#endif
 	if (exit_code != 0) {
 		fmt::print(fg(fmt::color::red),
 				   "\n! Compilation of {} failed! Compiler Error message: \n",
@@ -81,7 +92,12 @@ void compile_and_run(
 		fmt::print("{}\n", result);
 		std::exit(2);
 	} else {
-		fs::remove(fmt::format("{}.exe", path.substr(0, path.size() - 3)));
+#ifdef __WIN32__
+		// fmt::format("{}.exe", path.substr(0, path.size() - 3)
+		fs::remove(path.substr(0, path.size() - 3) + ".exe");
+#elifdef __unix__
+		fs::remove(path.substr(0, path.size() - 3));
+#endif
 		if (is_complete(path))
 			std::exit(0);
 		fmt::print("\n{}\n", result);

@@ -3,20 +3,19 @@
 
 int main(int argc, char** argv) {
 	argparse::ArgumentParser prepp(
-		"pre++", VERSION, argparse::default_arguments::version);
+		"pre++", VERSION, argparse::default_arguments::all);
 	prepp.add_argument("--run", "-r")
 		.nargs(1)
-		.help("Run a pre++ exercize")
+		.help("Run a pre++ exercise")	
 		.action([&](const std::string& ex) {
-			check(std::get<0>(read_toml(ex)),
-				  std::get<2>(read_toml(ex)));
+			check(std::get<0>(read_toml(ex)), std::get<2>(read_toml(ex)));
 		});
 
-	prepp.add_argument("--hint")
-		.help("Run pre++ in watch mode.")
+	prepp.add_argument("--hint", "-ht")
+		.help("Get a hint about an+ exercise.")
 		.nargs(1)
 		.action(
-			[&](const std::string& ex) { hint(std::get<2>(read_toml(ex))); });
+			[&](const std::string& ex) { hint(std::get<1>(read_toml(ex))); });
 
 	try {
 		prepp.parse_args(argc, argv);

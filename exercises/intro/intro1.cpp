@@ -5,4 +5,3 @@
 int main(){
     std::cout << "Hello pre++!" << std::endl;
 }
-// COMPLETE
