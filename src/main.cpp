@@ -9,16 +9,14 @@ int main(int argc, char** argv) {
 		.help("Run a pre++ exercize")
 		.action([&](const std::string& ex) {
 			check(std::get<0>(read_toml(ex)),
-				  std::get<1>(read_toml(ex)),
-				  std::get<3>(read_toml(ex)));
+				  std::get<2>(read_toml(ex)));
 		});
 
 	prepp.add_argument("--hint")
 		.help("Run pre++ in watch mode.")
 		.nargs(1)
-		.action([&](const std::string& ex) {
-			hint(std::get<2>(read_toml(ex)));
-		});
+		.action(
+			[&](const std::string& ex) { hint(std::get<2>(read_toml(ex))); });
 
 	try {
 		prepp.parse_args(argc, argv);
