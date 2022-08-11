@@ -1,7 +1,35 @@
-[intro1]
+[[exercise]]
+name = "intro1"
 path = "exercises/intro/intro1.cpp"
 hint = """Remove the I AM NOT DONE comment to move on to the next exercise."""
+mode = "compile"
 
-[intro2]
+[[exercise]]
+name = "intro2"
 path = "exercises/intro/intro2.cpp"
 hint = """Look for a missing semi colon."""
+mode = "compile"
+
+[[exercise]]
+name = "if1"
+path = "exercises/if/if1.cpp"
+hint = """"""
+mode = "compile"
+
+[[exercise]]
+name = "if2"
+path = "exercises/if/if2.cpp"
+hint = """"""
+mode = "compile"
+
+[[exercise]]
+name = "function1"
+path = "exercises/functions/functions1.cpp"
+hint = """"""
+mode = "compile"
+
+[[exercise]]
+name = "function2"
+path = "exercises/functions/functions2.cpp"
+hint = """"""
+mode = "compile"

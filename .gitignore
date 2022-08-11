@@ -2,4 +2,8 @@
 *.exe
 *.obj
 *.o
+*.lock
 /build
+
+# Added by cargo
+/target
