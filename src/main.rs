@@ -1,5 +1,6 @@
-mod compile;
+mod compiler;
 mod exercise;
+#[macro_use]
 mod ui;
 use clap::{Parser, Subcommand};
 use crate::exercise::ExerciseList;

@@ -1,3 +1,4 @@
+#[macro_export]
 macro_rules! warn {
     ($fmt:literal, $ex:expr) => {{
         use console::{style, Emoji};
@@ -15,6 +16,7 @@ macro_rules! warn {
     }};
 }
 
+#[macro_export]
 macro_rules! success {
     ($fmt:literal, $ex:expr) => {{
         use console::{style, Emoji};
